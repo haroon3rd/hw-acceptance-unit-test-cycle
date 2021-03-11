@@ -23,7 +23,7 @@ module NavigationHelpers
     
     when /^the edit page for "(.*)"$/ then '/movies/' + Movie.where(:title => $1).ids[0].to_s() + '/edit'
     when /^the details page for "(.*)"$/ then '/movies/' + Movie.where(:title => $1).ids[0].to_s()
-    when /^the Similar Movies page for "(.*)"$/ then '/movies/' + Movie.find_by(:title => $1).id.to_s() + '/same_directors'
+    when /^the Similar Movies page for "(.*)"$/ then '/similar/' + URI.encode($1)             #+ Movie.find_by(:title => $1).id.to_s() + '/same_directors'
 
     else
       begin

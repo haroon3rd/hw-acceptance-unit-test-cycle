@@ -10,12 +10,17 @@ class MoviesController < ApplicationController
     @movies = Movie.all
   end
 
-  def new
-    # default: render 'new' template
-  end
+  # def new
+  #   # default: render 'new' template
+  # end
   
-  def same_directors
-    redirect_to movies_path(Movie.find_by(:director => Movie.find_by_id(params[:id]).director))
+  def similar
+    @find_similar = Movie.find_similar(params[:title])
+    if @find_similar.nil?
+      redirect_to movies_path
+      flash[:warning] = "'#{params[:title]}' has no director info"
+    end
+    @movie = Movie.find_by_title([params[:title]])
   end
   
   def create

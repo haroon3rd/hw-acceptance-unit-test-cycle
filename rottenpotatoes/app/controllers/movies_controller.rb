@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
     # else
     #   @sort = params[:sort] 
     # end
-     @sort = params[:sort]
+    @sort = params[:sort]
      @session_sort = @sort  # Added for session record
     
     if !params[:ratings].nil?
